@@ -23,31 +23,29 @@ export function Register(props) {
         const res = await axios.post("http://localhost:8080/user", user);
 
         console.log(res)
-        if (res.status === 200) {
-            console.log("Registrado com sucesso")
-        }
-        else{
-            console.log("Deu erro")
-        }
+        props.navigation.navigate("Login");
+
     }
 
-    return (<>
-        <View>
-            <Text>Name: </Text>
-            <TextInput onChangeText={(text) => setName(text)}></TextInput>
+    return (
+        <>
+            <View>
+                <Text>Name: </Text>
+                <TextInput onChangeText={(text) => setName(text)}></TextInput>
 
-            <Text>Email: </Text>
-            <TextInput onChangeText={(text) => setEmail(text)}></TextInput>
+                <Text>Email: </Text>
+                <TextInput onChangeText={(text) => setEmail(text)}></TextInput>
 
-            <Text>Age: </Text>
-            <TextInput onChangeText={(text) => setAge(text)}></TextInput>
+                <Text>Age: </Text>
+                <TextInput onChangeText={(text) => setAge(text)}></TextInput>
 
-            <Text>Password: </Text>
-            <TextInput onChangeText={(text) => setPassword(text)}></TextInput>
+                <Text>Password: </Text>
+                <TextInput onChangeText={(text) => setPassword(text)}></TextInput>
 
-            <TouchableOpacity onPress={() => register()}>
-                <Text>Register</Text>
-            </TouchableOpacity>
-        </View>
-    </>);
+                <TouchableOpacity onPress={() => register()}>
+                    <Text>Register</Text>
+                </TouchableOpacity>
+            </View>
+        </>
+    );
 }
