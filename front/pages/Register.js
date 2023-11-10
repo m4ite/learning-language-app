@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { View, TextInput, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { TextInput, IconButton } from "react-native-paper";
 
 export function Register(props) {
     const [name, setName] = useState("")
@@ -29,23 +30,76 @@ export function Register(props) {
 
     return (
         <>
+            <IconButton
+            icon="chevron-left"
+            onPress={() => props.navigation.navigate("Start")}/>
             <View>
-                <Text>Name: </Text>
-                <TextInput onChangeText={(text) => setName(text)}></TextInput>
+            <Image source={require("../assets/initial.png")} style={style.img}></Image>
+                <TextInput
+                    label="Full name"
+                    left={<TextInput.Icon icon="account-circle" />}
+                    style={style.input}
+                    activeUnderlineColor="green"
+                    underlineColor="#EF5454"
+                    onChangeText={(text) => setName(text)} />
 
-                <Text>Email: </Text>
-                <TextInput onChangeText={(text) => setEmail(text)}></TextInput>
 
-                <Text>Age: </Text>
-                <TextInput onChangeText={(text) => setAge(text)}></TextInput>
+                <TextInput
+                    label="Email"
+                    left={<TextInput.Icon icon="email" />}
+                    style={style.input}
+                    activeUnderlineColor="green"
+                    underlineColor="#EF5454"
+                    keyboardType="email-address"
+                    onChangeText={(text) => setEmail(text)} />
 
-                <Text>Password: </Text>
-                <TextInput onChangeText={(text) => setPassword(text)}></TextInput>
+                <TextInput
+                    label="Age"
+                    left={<TextInput.Icon icon="calendar" />}
+                    style={style.input}
+                    activeUnderlineColor="green"
+                    underlineColor="#EF5454"
+                    onChangeText={(text) => setAge(text)} />
 
-                <TouchableOpacity onPress={() => register()}>
-                    <Text>Register</Text>
+                <TextInput
+                    label="Password"
+                    style={style.input}
+                    activeUnderlineColor="green"
+                    underlineColor="#EF5454"
+                    left={<TextInput.Icon icon="form-textbox-password" />}
+                    secureTextEntry
+                    onChangeText={(text) => setPassword(text)} />
+                <TouchableOpacity onPress={() => register()} style={style.register}>
+                    <Text style={style.registerText}>Register</Text>
                 </TouchableOpacity>
             </View>
         </>
     );
 }
+
+
+const style = StyleSheet.create({
+    input: {
+        backgroundColor: "#F9F9F9",
+        margin: 3,
+        borderColor: "gray",
+        marginHorizontal: 50,
+    },
+    img: {
+        width: "300px",
+        height: "300px",
+        alignSelf: 'center'
+    },
+    register: {
+        backgroundColor: "#EF5454",
+        borderRadius: 30,
+        padding: ".8em",
+        marginHorizontal: 50,
+        marginTop: 10
+    },
+    registerText: {
+        color: "white",
+        textAlign: "center",
+        fontWeight: "600",
+    }
+})

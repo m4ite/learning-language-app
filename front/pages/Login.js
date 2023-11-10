@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
-
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { TextInput } from "react-native-paper";
 export function Login(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -23,17 +23,82 @@ export function Login(props) {
 
     return (
         <>
-            <View>
-                <Text>Email: </Text>
-                <TextInput onChangeText={(text) => setEmail(text)}></TextInput>
+            <View style={style.body}>
+                <Image source={require("../assets/initial.png")} style={style.img}></Image>
+                <View style={style.contentView}>
+                    <Text style={style.content}><Text style={{ fontWeight: "bold" }}>Login</Text> to your account</Text>
+                </View>
 
-                <Text>Password: </Text>
-                <TextInput onChangeText={(text) => setPassword(text)}></TextInput>
+                <TextInput
+                    label="Email"
+                    left={<TextInput.Icon icon="email" />}
+                    style={style.input}
+                    activeUnderlineColor="green"
+                    underlineColor="#EF5454"
+                    keyboardType="email-address"
+                    onChangeText={(text) => setEmail(text)} />
 
-                <TouchableOpacity onPress={() => login()}>
-                    <Text>Login</Text>
+                <TextInput
+                    label="Password"
+                    style={style.input}
+                    activeUnderlineColor="green"
+                    underlineColor="#EF5454"
+                    left={<TextInput.Icon icon="form-textbox-password" />}
+                    secureTextEntry
+                    onChangeText={(text) => setPassword(text)} />
+
+                <TouchableOpacity onPress={() => login()} style={style.login}>
+                    <Text style={style.loginText}>Login</Text>
+                </TouchableOpacity>
+                <TouchableOpacity  onPress={() => props.navigation.navigate("Register")}>
+                    <Text style={style.content2}>Don't have an Account? &nbsp;
+                        <Text style={{color: "#EF5454", fontWeight: "500"}}>Sign up</Text>
+                    </Text>
                 </TouchableOpacity>
             </View>
         </>
     )
 }
+
+
+const style = StyleSheet.create({
+    body: {
+        height: "100%",
+        // backgroundColor: "white",
+        textAlign: "center",
+        justifyContent: "center"
+    },
+    input: {
+        backgroundColor: "#F9F9F9",
+        margin: 10,
+        borderColor: "gray",
+        marginHorizontal: 50,
+    },
+    img: {
+        width: "300px",
+        height: "300px",
+        alignSelf: 'center'
+    },
+    content: {
+        fontSize: "20px",
+        margin: 20,
+        textAlign: "center"
+    },
+    content2: {
+        fontSize: "15px",
+        margin: 30,
+        textAlign: "center"
+    },
+    login: {
+        backgroundColor: "#EF5454",
+        borderRadius: 30,
+        padding: "1em",
+        marginHorizontal: 50,
+        marginTop: 20
+    },
+    loginText: {
+        color: "white",
+        textAlign: "center",
+        fontWeight: "600",
+    }
+})

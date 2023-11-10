@@ -3,7 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Home } from "./pages/Home";
-import { StartPage } from "./pages/StartPage";
+import { Load } from "./pages/Load";
+import { Start } from "./pages/Start";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -11,10 +12,16 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Start" component={StartPage} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Home" component={Home} />
+
+      <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+
+        <Stack.Screen options={{ headerShown: false }} name="Load" component={Load} />
+        <Stack.Screen options={{ headerShown: false }} name="Start" component={Start} />
+        <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
+        <Stack.Screen options={{ headerShown: false }} name="Register" component={Register} />
+        
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );
