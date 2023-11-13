@@ -1,28 +1,30 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
+import { Historias } from '../pages/Historias';
+import { MyAccount } from '../pages/MyAccount';
 
-const MusicRoute = () => <Text>Music</Text>;
+const MyAccountRoute = () => <MyAccount/>;
 
-const AlbumsRoute = () => <Text>Albums</Text>;
+const LibraryRoute = () => <Historias/>;
 
-const RecentsRoute = () => <Text>Recents</Text>;
+const LessonsRoute = () => <Text>Recents</Text>;
 
-const NotificationsRoute = () => <Text>Notifications</Text>;
+const AwardsRoute = () => <Text>Notifications</Text>;
 
-const NavBar = () => {
+const NavBar = (props) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'music', title: 'Favorites', focusedIcon: 'heart', unfocusedIcon: 'heart-outline'},
-    { key: 'albums', title: 'Albums', focusedIcon: 'album' },
-    { key: 'recents', title: 'Recents', focusedIcon: 'history' },
-    { key: 'notifications', title: 'Notifications', focusedIcon: 'bell', unfocusedIcon: 'bell-outline' },
+    { key: 'myAccount', title: 'MyAccount', focusedIcon: 'account', unfocusedIcon: 'account-outline'},
+    { key: 'library', title: 'Stories', focusedIcon: 'book-open-page-variant', unfocusedIcon: "book-open-page-variant-outline" },
+    { key: 'lessons', title: 'Lessons', focusedIcon: 'school', unfocusedIcon: "school-outline"},
+    { key: 'awards', title: 'Awards', focusedIcon: 'medal', unfocusedIcon: 'medal-outline'},
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    music: MusicRoute,
-    albums: AlbumsRoute,
-    recents: RecentsRoute,
-    notifications: NotificationsRoute,
+    myAccount: MyAccountRoute,
+    library: LibraryRoute,
+    lessons: LessonsRoute,
+    awards: AwardsRoute,
   });
 
   return (

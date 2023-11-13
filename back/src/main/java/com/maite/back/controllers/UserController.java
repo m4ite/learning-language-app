@@ -31,16 +31,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public boolean login(@RequestBody UserModel user) {
+    public String login(@RequestBody UserModel user) {
         var u = getAll();
         for (UserModel findUser : u) {
             System.out.println(findUser);
 
             if (findUser.password.equals(user.password) && findUser.email.equals(user.email))
-                return true;
-        
+                    return (findUser.id);
         }
-        return false;
+        return null;
     }
 
 }

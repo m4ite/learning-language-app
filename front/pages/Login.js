@@ -64,7 +64,6 @@ export function Login(props) {
 const style = StyleSheet.create({
     body: {
         height: "100%",
-        // backgroundColor: "white",
         textAlign: "center",
         justifyContent: "center"
     },

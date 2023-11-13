@@ -17,6 +17,8 @@ public class UserModel{
     public String proficience;
     public String password;
     public String salt;
+    public short adm;
+    public short xp;
 
     public UserModel(String name, String email, short age, String proficience, String password, String salt)
     {
