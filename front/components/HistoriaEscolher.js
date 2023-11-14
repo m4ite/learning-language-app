@@ -1,13 +1,15 @@
-import {View, Text, Image, StyleSheet} from 'react-native'
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
+import { useNavigation } from "@react-navigation/native"
 
 export function HistoriaEscolher(props) {
+    var navigation = useNavigation()
     return (
         <>
-            <View style={style.container}>
-                <Image source={require("../assets/initial.png")} style={style.img}/>
+            <TouchableOpacity style={style.container} onPress={() => navigation.navigate("HistoriaDetail")}>
+                <Image source={require("../assets/" + props.image)} style={style.img}/>
                 <Text style={style.title}>{props.title}</Text>
                 <Text style={style.xp}>+ {props.xp} XP</Text>
-            </View>
+            </TouchableOpacity>
         </>
     )
 }

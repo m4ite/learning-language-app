@@ -3,7 +3,7 @@ import { HistoriaEscolher } from '../components/HistoriaEscolher';
 export function Historias(props) {
     return (
         <>
-             <Image source={require("../assets/hello.png")} style={style.img} />
+            <Image source={require("../assets/hello.png")} style={style.img} />
             <View>
                 <Text style={style.title}>MiauMundo Histórias</Text>
                 <Text style={style.subtitle}>Melhore a sua leitura, escuta e fala com histórias curtinhas</Text>
@@ -12,10 +12,18 @@ export function Historias(props) {
 
             <ScrollView>
                 <Text style={style.h2}><Text style={style.span}>Série 1</Text></Text>
-
                 <View style={style.grid}>
-                    <HistoriaEscolher title="A Rainy Day" xp="15" image=""/>
-                    <HistoriaEscolher title="sla" xp="15" image="" />
+                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
+                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
+                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
+                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
+                </View>
+
+                <Text style={style.h2}><Text style={style.span}>Série 2</Text></Text>
+                <View style={style.grid}>
+                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
+                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
+                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
                 </View>
             </ScrollView>
         </>
@@ -59,7 +67,7 @@ const style = StyleSheet.create({
     },
     img:{
         width: "120px",
-        height: "100px",
+        height: "108px",
         alignSelf: "center",
         margin: "10px"
     }

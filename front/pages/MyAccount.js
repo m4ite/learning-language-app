@@ -1,21 +1,29 @@
-import { View, StyleSheet, Text, Image } from "react-native";
-import { Divider, Icon, MD3Colors } from "react-native-paper";
+import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { Divider, Icon } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native"
 
-export function MyAccount(props) {
+export function MyAccount() {
+    var navigation = useNavigation()
     return (
         <>
-            <View>
+            <ScrollView>
                 <Text style={style.pageTitle}>Profile</Text>
                 <Divider />
+
+                <TouchableOpacity onPress={() => navigation.navigate("Start")} style={{alignSelf: "flex-end", padding: "1em"}}>
+                    <Icon source="logout" size={25}/>
+                    </TouchableOpacity>
 
                 <Image source={require("../assets/userDefault.png")} style={style.img} />
                 <Text style={style.name}>UserName</Text>
 
                 <View style={{ padding: 20 }}>
+
+                    <Text style={style.sta}>Statistics</Text>
                     <View style={style.award}>
                         <Image />
                         <Text style={style.txt}>
-                        <Image source={require("../assets/nivel.png")} style={style.icon} />
+                            <Image source={require("../assets/nivel.png")} style={style.icon} />
                             15 xp
                         </Text>
                     </View>
@@ -23,16 +31,13 @@ export function MyAccount(props) {
                     <View style={style.award}>
                         <Image />
                         <Text style={style.txt}>
-                        <Image source={require("../assets/level.png")} style={style.icon} />
+                            <Image source={require("../assets/level.png")} style={style.icon} />
                             level 1
                         </Text>
                     </View>
-
-
-
                 </View>
 
-            </View>
+            </ScrollView>
         </>
     );
 }
@@ -55,7 +60,8 @@ const style = StyleSheet.create({
     name: {
         fontWeight: "400",
         textAlign: "center",
-        fontSize: "15px"
+        fontSize: "15px",
+        fontWeight: 600
     },
     award: {
         backgroundColor: "white",
@@ -63,17 +69,22 @@ const style = StyleSheet.create({
         borderColor: "#dfdfdf",
         padding: 20,
         borderWidth: "1px",
-        borderRadius: "10px"  
+        borderRadius: "10px"
     },
     txt: {
         textAlign: "center",
         fontWeight: 600,
         alignSelf: "center",
     },
-    icon:{
+    icon: {
         width: "50px",
         height: "50px",
         alignSelf: "center"
+    },
+    sta: {
+        fontSize: "20px",
+        fontWeight: 600,
+        padding: ".5em"
     }
 
 })
