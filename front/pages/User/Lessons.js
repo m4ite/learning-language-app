@@ -1,20 +1,21 @@
 import { View, StyleSheet, ScrollView, Text, Image } from 'react-native'
-import { ProgressBar, MD3Colors, Icon } from 'react-native-paper';
+import { ProgressBar, MD3Colors } from 'react-native-paper';
 
 export function Lessons(props) {
     return (
         <>
-            <Image source={require("../assets/hello.png")} style={{ width: 120, height: 105, alignSelf: "center"}} />
-            <Text style={style.title}>
-                Unidades de Inglês
-                <Image source={require("../assets/eua.png")} style={{ width: 50, height: 50 }} />
-            </Text>
             <ScrollView>
+                <Image source={require("../../assets/hello.png")} style={{ width: 120, height: 105, alignSelf: "center" }} />
+                <Text style={style.title}>
+                    Unidades de Inglês
+                    <Image source={require("../../assets/eua.png")} style={{ width: 50, height: 50 }} />
+                </Text>
+
                 <Text style={style.h2}><Text style={style.span}>Série 1</Text></Text>
                 <View style={style.lesson}>
                     <View style={{ padding: "1em" }}>
                         <View style={style.circle}>
-                            <Image source={require("../assets/arrow.png")} style={{ width: 65, height: 65 }} />
+                            <Image source={require("../../assets/arrow.png")} style={{ width: 65, height: 65 }} />
                         </View>
                     </View>
                     <View style={{ padding: "1em" }}>
@@ -28,7 +29,7 @@ export function Lessons(props) {
                 <View style={style.lesson}>
                     <View style={{ padding: "1em" }}>
                         <View style={style.circle}>
-                            <Image source={require("../assets/hamburguer.png")} style={{ width: 65, height: 65 }} />
+                            <Image source={require("../../assets/hamburguer.png")} style={{ width: 65, height: 65 }} />
                         </View>
                     </View>
                     <View style={{ padding: "1em" }}>
@@ -43,7 +44,7 @@ export function Lessons(props) {
                 <View style={style.lesson}>
                     <View style={{ padding: "1em" }}>
                         <View style={style.circle}>
-                            <Image source={require("../assets/arrow.png")} style={{ width: 65, height: 65 }} />
+                            <Image source={require("../../assets/arrow.png")} style={{ width: 65, height: 65 }} />
                         </View>
                     </View>
                     <View style={{ padding: "1em" }}>
@@ -57,7 +58,7 @@ export function Lessons(props) {
                 <View style={style.lesson}>
                     <View style={{ padding: "1em" }}>
                         <View style={style.circle}>
-                            <Image source={require("../assets/hamburguer.png")} style={{ width: 65, height: 65 }} />
+                            <Image source={require("../../assets/hamburguer.png")} style={{ width: 65, height: 65 }} />
                         </View>
                     </View>
                     <View style={{ padding: "1em" }}>
@@ -95,7 +96,7 @@ const style = StyleSheet.create({
     },
     title: {
         display: "flex",
-        flexDirection:"row",
+        flexDirection: "row",
         fontSize: "25px",
         fontWeight: "600",
         textAlign: "center",

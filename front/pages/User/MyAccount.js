@@ -14,7 +14,7 @@ export function MyAccount() {
                     <Icon source="logout" size={25}/>
                     </TouchableOpacity>
 
-                <Image source={require("../assets/userDefault.png")} style={style.img} />
+                <Image source={require("../../assets/userDefault.png")} style={style.img} />
                 <Text style={style.name}>UserName</Text>
 
                 <View style={{ padding: 20 }}>
@@ -23,7 +23,7 @@ export function MyAccount() {
                     <View style={style.award}>
                         <Image />
                         <Text style={style.txt}>
-                            <Image source={require("../assets/nivel.png")} style={style.icon} />
+                            <Image source={require("../../assets/nivel.png")} style={style.icon} />
                             15 xp
                         </Text>
                     </View>
@@ -31,7 +31,7 @@ export function MyAccount() {
                     <View style={style.award}>
                         <Image />
                         <Text style={style.txt}>
-                            <Image source={require("../assets/level.png")} style={style.icon} />
+                            <Image source={require("../../assets/level.png")} style={style.icon} />
                             level 1
                         </Text>
                     </View>

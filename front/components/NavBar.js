@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
-import { Historias } from '../pages/Historias';
-import { Lessons } from '../pages/Lessons';
-import { MyAccount } from '../pages/MyAccount';
+import { Historias } from '../pages/User/Historias';
+import { Lessons } from '../pages/User/Lessons';
+import { MyAccount } from '../pages/User/MyAccount';
 
 const MyAccountRoute = () => <MyAccount/>;
 const LibraryRoute = () => <Historias/>;

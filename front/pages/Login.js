@@ -24,7 +24,7 @@ export function Login(props) {
     return (
         <>
             <View style={style.body}>
-                <Image source={require("../assets/initial.png")} style={style.img}></Image>
+                <Image source={require("../assets/initial.png")} style={style.img}/>
                 <View style={style.contentView}>
                     <Text style={style.content}><Text style={{ fontWeight: "bold" }}>Login</Text> to your account</Text>
                 </View>

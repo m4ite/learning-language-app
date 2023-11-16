@@ -1,14 +1,25 @@
+//  GLOBAL PAGES
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import { Home } from "./pages/Home";
 import { Load } from "./pages/Load";
 import { Start } from "./pages/Start";
-import { HistoriaDetail } from "./pages/HistoriaDetail";
-import { Historias } from "./pages/Historias";
+
+
+// USER PAGES
 import NavBar from "./components/NavBar";
-import { MyAccount } from "./pages/MyAccount";
+import { Home } from "./pages/User/Home";
+import { HistoriaDetail } from "./pages/User/HistoriaDetail";
+import { Historias } from "./pages/User/Historias";
+import { MyAccount } from "./pages/User/MyAccount";
+
+
+//  ADMIN PAGES
+import { HomeADM } from "./pages/Admin/HomeADM";
+import { ViewHistoria } from "./pages/Admin/ViewHistoria"
+import { ViewNiveis } from './pages/Admin/ViewNiveis'
+
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -16,6 +27,15 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen options={{ headerShown: false }} name="ViewNiveis" component={ViewNiveis} />
+        <Stack.Screen options={{ headerShown: false }} name="HomeADM" component={HomeADM} />
+        <Stack.Screen options={{ headerShown: false }} name="ViewHistoria" component={ViewHistoria} />
+        
+
+
+
+
+
         <Stack.Screen options={{ headerShown: false }} name="HistoriaDetail" component={HistoriaDetail} />
 
         <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
@@ -28,6 +48,8 @@ export default function App() {
         <Stack.Screen options={{ headerShown: false }} name="Historias" component={Historias} />
         <Stack.Screen options={{ headerShown: false }} name="Account" component={MyAccount} />
         <Stack.Screen options={{ headerShown: false }} name="Nav" component={NavBar} />
+
+
 
       </Stack.Navigator>
     </NavigationContainer>

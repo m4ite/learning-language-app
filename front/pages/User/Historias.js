@@ -1,9 +1,9 @@
 import { View, StyleSheet, ScrollView, Text, Image } from 'react-native'
-import { HistoriaEscolher } from '../components/HistoriaEscolher';
+import { HistoriaEscolher } from '../../components/HistoriaEscolher';
 export function Historias(props) {
     return (
         <>
-            <Image source={require("../assets/hello.png")} style={style.img} />
+            <Image source={require("../../assets/hello.png")} style={style.img} />
             <View>
                 <Text style={style.title}>MiauMundo Histórias</Text>
                 <Text style={style.subtitle}>Melhore a sua leitura, escuta e fala com histórias curtinhas</Text>
