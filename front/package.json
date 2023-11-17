@@ -21,7 +21,8 @@
     "react-native-track-player": "^4.0.1",
     "react-native-web": "~0.19.6",
     "react-native-webview": "^13.6.2",
-    "expo-av": "~13.4.1"
+    "expo-av": "~13.4.1",
+    "@react-native-picker/picker": "2.4.10"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

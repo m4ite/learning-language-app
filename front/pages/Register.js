@@ -31,10 +31,11 @@ export function Register(props) {
     return (
         <>
             <IconButton
-            icon="chevron-left"
-            onPress={() => props.navigation.navigate("Start")}/>
+                icon="chevron-left"
+                onPress={() => props.navigation.navigate("Start")} />
+
             <View>
-            <Image source={require("../assets/initial.png")} style={style.img}></Image>
+                <Image source={require("../assets/initial.png")} style={style.img}></Image>
                 <TextInput
                     label="Full name"
                     left={<TextInput.Icon icon="account-circle" />}
@@ -84,10 +85,11 @@ const style = StyleSheet.create({
         margin: 3,
         borderColor: "gray",
         marginHorizontal: 50,
+        marginVertical: 8
     },
     img: {
-        width: "300px",
-        height: "300px",
+        width: "250px",
+        height: "250px",
         alignSelf: 'center'
     },
     register: {
