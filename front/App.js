@@ -13,6 +13,7 @@ import { Home } from "./pages/User/Home";
 import { HistoriaDetail } from "./pages/User/HistoriaDetail";
 import { Historias } from "./pages/User/Historias";
 import { MyAccount } from "./pages/User/MyAccount";
+import { Activity } from "./pages/User/Activity";
 
 
 //  ADMIN PAGES
@@ -30,7 +31,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen options={{ headerShown: false }} name="Atividade" component={Activity} />
+
       <Stack.Screen options={{ headerShown: false }} name="CreateAtividade" component={CreateAtividades} />
+
+
       <Stack.Screen options={{ headerShown: false }} name="CreateNivel" component={CreateNivel} />
 
       <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />

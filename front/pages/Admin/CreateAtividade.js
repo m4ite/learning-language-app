@@ -1,11 +1,21 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { Picker } from '@react-native-picker/picker';
 import { Icon } from "react-native-paper"
-import { TextInput } from "react-native-paper"
 import { useState } from "react"
+import { CreateListening } from "../../components/Activity/CreateListening";
+import { CreateWrite } from "../../components/Activity/CreateWrite";
 
 export function CreateAtividades(props) {
     const [selectedActivityTtype, setType] = useState();
+
+    function renderForm(){
+        if(selectedActivityTtype == "Listening")
+            return(<CreateListening/>)
+
+        if(selectedActivityTtype == "Write")
+            return(<CreateWrite/>)
+    }
+
     return (
         <View style={style.bg}>
 
@@ -17,11 +27,15 @@ export function CreateAtividades(props) {
             <Text style={style.title}>Criar nova atividade</Text>
             <Text style={style.name}>Nivel Name</Text>
 
-            <Picker onValueChange={(itemValue, itemIndex) => setType(itemValue)}>
-                <Picker.Item enabled={false} label="Tipo de Atividade" />
-                <Picker.Item  label="Java" value="java" />
-                <Picker.Item label="JavaScript" value="js" />
+            <Picker onValueChange={(itemValue, itemIndex) => setType(itemValue)} style={style.picker}>
+                <Picker.Item  fontWeight="900" label="Tipo de Atividade" />
+                <Picker.Item label="Listening" value="Listening" />
+                <Picker.Item label="Write" value="Write" />
+                <Picker.Item label="Options" value="Options" />
             </Picker>
+
+            {renderForm()}    
+            
         </View>
     )
 }
@@ -53,6 +67,16 @@ const style = StyleSheet.create({
         fontSize: 20,
         fontWeight: 600,
         marginBottom: 30
+    },
+    picker:{
+        padding: 10,
+        fontWeight: 800,
+        borderColor: "#EF5454",
+        backgroundColor: "#F9F9F9",
+        borderTopWidth: 0,
+        borderEndWidth: 0,
+        borderStartWidth: 0,
+        marginBottom: 50
     }
 
 })
