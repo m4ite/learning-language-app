@@ -17,4 +17,9 @@ public class UserService {
     public List<UserModel> findAll() {
         return (List<UserModel>) this.userRepository.findAll();
     }
+
+    public UserModel findByEmail(String email) {
+        return (UserModel) this.userRepository.findByEmail(email);
+    }
+
 }
