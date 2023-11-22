@@ -1,5 +1,7 @@
 package com.maite.back.services;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.maite.back.models.UserModel;
@@ -21,5 +23,4 @@ public class UserService {
     public UserModel findByEmail(String email) {
         return (UserModel) this.userRepository.findByEmail(email);
     }
-
 }

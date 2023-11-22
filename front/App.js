@@ -31,32 +31,17 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen options={{ headerShown: false }} name="Atividade" component={Activity} />
-
       <Stack.Screen options={{ headerShown: false }} name="CreateAtividade" component={CreateAtividades} />
 
-
-      <Stack.Screen options={{ headerShown: false }} name="CreateNivel" component={CreateNivel} />
-
-      <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-
-      
-
-      <Stack.Screen options={{ headerShown: false }} name="ViewNiveis" component={ViewNiveis} />
-
-
-
-      <Stack.Screen options={{ headerShown: false }} name="CreateHistoria" component={CreateHistorias} />
-
-
-
-      <Stack.Screen options={{ headerShown: false }} name="Load" component={Load} />
-
         <Stack.Screen options={{ headerShown: false }} name="HomeADM" component={HomeADM} />
+        <Stack.Screen options={{ headerShown: false }} name="Atividade" component={Activity} />
+        <Stack.Screen options={{ headerShown: false }} name="CreateNivel" component={CreateNivel} />
+        <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+        <Stack.Screen options={{ headerShown: false }} name="ViewNiveis" component={ViewNiveis} />
+        <Stack.Screen options={{ headerShown: false }} name="CreateHistoria" component={CreateHistorias} />
+        <Stack.Screen options={{ headerShown: false }} name="Load" component={Load} />
         <Stack.Screen options={{ headerShown: false }} name="ViewHistoria" component={ViewHistoria} />
         <Stack.Screen options={{ headerShown: false }} name="HistoriaDetail" component={HistoriaDetail} />
-
-        
         <Stack.Screen options={{ headerShown: false }} name="Start" component={Start} />
         <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
         <Stack.Screen options={{ headerShown: false }} name="Register" component={Register} />

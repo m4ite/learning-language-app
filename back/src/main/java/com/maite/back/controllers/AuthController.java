@@ -23,7 +23,7 @@ public class AuthController{
     @PostMapping("/login")
     public String login(@RequestBody UserModel user){
         var resp = this.userService.findByEmail(user.getEmail());
-
+        
         if(resp != null)
         {
             if(resp.getPassword().equals(user.getPassword()))

@@ -1,24 +1,19 @@
-import { useState } from "react";
+import { StrictMode, useState } from "react";
 import axios from "axios";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { TextInput } from "react-native-paper";
 export function Login(props) {
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-
     const login = async () => {
-
         if (!email || !password) return
-
         const user = { email, password }
-
-        const res = await axios.post("http://localhost:8080/user/login", user)
-        console.log(res.data)
-        if (res.data === true)
-            props.navigation.navigate("Home");
-        else
-            console.log("senha ou email invalidos")
+        var res = await axios.post("http://localhost:8080/auth/login", user)
+        sessionStorage.setItem('token', res.data)
+        // const res = await axios.post("http://localhost:8080/auth/login", {headers: {"Authorization":"Bearer "+jwt}})
+        props.navigation.navigate("Home")
     }
 
     return (

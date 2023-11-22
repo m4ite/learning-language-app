@@ -10,6 +10,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import com.maite.back.filter.SecurityFilter;
 
 @Configuration
@@ -22,13 +24,16 @@ public class SecurityConfiguration{
     @Bean
     public SecurityFilterChain setSecurityFilterChain(final HttpSecurity httpSecurity) throws Exception{
         return httpSecurity
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                    .anyRequest()
-                    .authenticated())   
-            .addFilterBefore(this.securityFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();
+                .cors(withDefaults())
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/validate").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                        .anyRequest()
+                        .authenticated())
+                .addFilterBefore(this.securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 }

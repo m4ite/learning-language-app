@@ -4,6 +4,7 @@ import { Icon } from "react-native-paper"
 import { useState } from "react"
 import { CreateListening } from "../../components/Activity/CreateListening";
 import { CreateWrite } from "../../components/Activity/CreateWrite";
+import { CreateOption } from "../../components/Activity/CreateOptions";
 
 export function CreateAtividades(props) {
     const [selectedActivityTtype, setType] = useState();
@@ -14,6 +15,9 @@ export function CreateAtividades(props) {
 
         if(selectedActivityTtype == "Write")
             return(<CreateWrite/>)
+        
+        if(selectedActivityTtype == "Options")
+            return(<CreateOption/>)
     }
 
     return (
