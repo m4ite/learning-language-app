@@ -57,8 +57,10 @@ public class AuthService implements UserDetailsService {
                     .verify(token);
 
             final var anSubject = decoded.getSubject();
+            
             return anSubject;
         } catch (Exception e) {
+            System.out.println("erro "+e);
             return "";
         }
     }

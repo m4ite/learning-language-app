@@ -38,7 +38,7 @@ public class AuthController{
     @PostMapping("/validate")
     public String validate(@RequestHeader("Authorization") String token)
     {
-        final var validate = this.authService.validateToken(token.replace("Bearer", ""));
+        final var validate = this.authService.validateToken(token.replace("Bearer ", ""));
         if(!validate.isBlank())
             return validate;
         return "token not valid";

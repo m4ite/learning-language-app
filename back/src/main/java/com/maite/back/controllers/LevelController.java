@@ -26,7 +26,7 @@ public class LevelController {
 
     @PostMapping("")
     public boolean newLevel(@RequestBody LevelModel newLevel, @RequestHeader("Authorization") String token){
-        final var validate = this.authService.validateToken(token.replace("Bearer", ""));
+        final var validate = this.authService.validateToken(token.replace("Bearer ", ""));
         
         if(validate.isBlank())
             return false;
@@ -36,8 +36,7 @@ public class LevelController {
     }
 
     @GetMapping("")
-    public List<LevelModel> getAll(@RequestHeader("Authorization") String token){
-        this.authService.validateToken(token.replace("Bearer",""));
+    public List<LevelModel> getAll(){
         return levelService.getAll();
     }
 

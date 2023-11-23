@@ -28,7 +28,7 @@ public class ActivityController {
     @PostMapping("")
     public boolean newLisnening(@RequestBody ListeningModel newListening, @RequestHeader("Authorization") String token)
     {
-        final var validate = this.authService.validateToken(token.replace("Bearer", ""));
+        final var validate = this.authService.validateToken(token.replace("Bearer ", ""));
         if(validate.isBlank())
             return false;
         activityService.saveListening(newListening);
@@ -37,7 +37,7 @@ public class ActivityController {
 
     @GetMapping("")
     public List<ListeningModel> getByLevel(@RequestHeader("Authorization") String token, @RequestBody String level){
-        this.authService.validateToken(token.replace("Bearer", ""));
+        this.authService.validateToken(token.replace("Bearer ", ""));
         return activityService.getAll(level);
     }
 }

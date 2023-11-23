@@ -1,36 +1,45 @@
 import axios from "axios"
+import { useEffect, useState } from "react"
 import { TouchableOpacity, ScrollView, Text, StyleSheet, Image } from "react-native"
 import { Icon, List, MD3Colors } from "react-native-paper"
 
 export function ViewNiveis(props) {
 
-    const getNiveis = async () => {
-        var res = await axios.get("http://localhost:8080/level",{headers: {"Authorization":"Bearer "+jwt}})
-        console.log(res)
+    const [niveis, setNiveis] = useState([])
+    const [teste,setTeste] = useState([])
+
+    async function getNiveis() {
+        const jwt = sessionStorage.getItem("token")
+        await axios.get("http://localhost:8080/level",{headers: {"Authorization":" Bearer "+jwt}})
+            .then((response) => {
+                setNiveis(response.data)
+            })
+        
     }
    
+    useEffect(() => {
+        getNiveis()
+    },[])
 
     return (
         <>
             <TouchableOpacity onPress={() => props.navigation.navigate('HomeADM')} style={{ padding: 10 }}>
                 <Icon source="chevron-left" size={20} />
             </TouchableOpacity>
-
+            
             <Image source={require("../../assets/initial.png")} style={style.img} />
 
             <Text style={style.title}>Níveis Criados</Text>
-
             <ScrollView style={style.Accordion}>
                 <List.AccordionGroup>
-                    <List.Accordion title="Nivel 1" id='1' >
+                    {niveis.forEach(nivel => {
+                        <List.Accordion title="&{nivel.Name}" id='1' >
                         <TouchableOpacity><List.Item style={style.List} title="Atividade 1" left={props => <List.Icon {...props} icon="file-document-outline" />}/></TouchableOpacity>
                         <TouchableOpacity onPress={() => props.navigation.navigate("CreateAtividade")}><List.Item style={style.List} title="Criar atividade" left={props => <List.Icon {...props} icon="plus" />}/></TouchableOpacity>
                     </List.Accordion>
-                    <List.Accordion title="Nivel 2" id='2'>
-                        <TouchableOpacity><List.Item style={style.List} title="Atividade 1" left={props => <List.Icon {...props} icon="file-document-outline" />}/></TouchableOpacity>
-                        <TouchableOpacity><List.Item style={style.List} title="Atividade 2" left={props => <List.Icon {...props} icon="file-document-outline" />}/></TouchableOpacity>
-                        <TouchableOpacity onPress={() => props.navigation.navigate("CreateAtividade")}><List.Item style={style.List} title="Criar atividade" left={props => <List.Icon {...props} icon="plus" />}/></TouchableOpacity>
-                    </List.Accordion>
+                    })}
+                    
+                    
                 </List.AccordionGroup>
             </ScrollView>
             <TouchableOpacity style={style.plus} onPress={() => props.navigation.navigate("CreateNivel")}><Icon source="plus" color={MD3Colors.error100} size={40} /></TouchableOpacity>

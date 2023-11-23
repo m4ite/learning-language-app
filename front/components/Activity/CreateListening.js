@@ -23,7 +23,7 @@ export function CreateListening(){
         }
 
         const jwt = sessionStorage.getItem("token")
-        const res = await axios.post("http://localhost:8080/activity/listening", activity, {headers: {"Authorization":"Bearer"+jwt}})
+        const res = await axios.post("http://localhost:8080/activity/listening", activity, {headers: {"Authorization":"Bearer "+jwt}})
         if(res.data == true)
            navigation.navigate("ViewNiveis")
     }
