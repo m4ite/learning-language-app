@@ -32,7 +32,6 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen options={{ headerShown: false }} name="CreateAtividade" component={CreateAtividades} />
-
         <Stack.Screen options={{ headerShown: false }} name="HomeADM" component={HomeADM} />
         <Stack.Screen options={{ headerShown: false }} name="Atividade" component={Activity} />
         <Stack.Screen options={{ headerShown: false }} name="CreateNivel" component={CreateNivel} />

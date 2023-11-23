@@ -1,7 +1,15 @@
+import axios from "axios"
 import { TouchableOpacity, ScrollView, Text, StyleSheet, Image } from "react-native"
 import { Icon, List, MD3Colors } from "react-native-paper"
 
 export function ViewNiveis(props) {
+
+    const getNiveis = async () => {
+        var res = await axios.get("http://localhost:8080/level",{headers: {"Authorization":"Bearer "+jwt}})
+        console.log(res)
+    }
+   
+
     return (
         <>
             <TouchableOpacity onPress={() => props.navigation.navigate('HomeADM')} style={{ padding: 10 }}>

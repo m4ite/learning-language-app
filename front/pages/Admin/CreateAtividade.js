@@ -9,15 +9,15 @@ import { CreateOption } from "../../components/Activity/CreateOptions";
 export function CreateAtividades(props) {
     const [selectedActivityTtype, setType] = useState();
 
-    function renderForm(){
-        if(selectedActivityTtype == "Listening")
-            return(<CreateListening/>)
+    function renderForm() {
+        if (selectedActivityTtype == "Listening")
+            return (<CreateListening />)
 
-        if(selectedActivityTtype == "Write")
-            return(<CreateWrite/>)
-        
-        if(selectedActivityTtype == "Options")
-            return(<CreateOption/>)
+        if (selectedActivityTtype == "Write")
+            return (<CreateWrite />)
+
+        if (selectedActivityTtype == "Options")
+            return (<CreateOption />)
     }
 
     return (
@@ -31,15 +31,17 @@ export function CreateAtividades(props) {
             <Text style={style.title}>Criar nova atividade</Text>
             <Text style={style.name}>Nivel Name</Text>
 
-            <Picker onValueChange={(itemValue, itemIndex) => setType(itemValue)} style={style.picker}>
-                <Picker.Item  fontWeight="900" label="Tipo de Atividade" />
-                <Picker.Item label="Listening" value="Listening" />
-                <Picker.Item label="Write" value="Write" />
-                <Picker.Item label="Options" value="Options" />
-            </Picker>
+            <View style={{marginHorizontal: 50}}>
+                <Picker onValueChange={(itemValue, itemIndex) => setType(itemValue)} style={style.picker}>
+                    <Picker.Item fontWeight="900" label="Tipo de Atividade" />
+                    <Picker.Item label="Listening" value="Listening" />
+                    <Picker.Item label="Write" value="Write" />
+                    <Picker.Item label="Options" value="Options" />
+                </Picker>
+            </View>
 
-            {renderForm()}    
-            
+            {renderForm()}
+
         </View>
     )
 }
@@ -72,7 +74,7 @@ const style = StyleSheet.create({
         fontWeight: 600,
         marginBottom: 30
     },
-    picker:{
+    picker: {
         padding: 10,
         fontWeight: 800,
         borderColor: "#EF5454",

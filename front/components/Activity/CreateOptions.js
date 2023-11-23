@@ -26,7 +26,7 @@ export function CreateOption() {
                 underlineColor="#EF5454"
                 onChangeText={(text) => setResposta(text)} />
 
-             <Image source={require('../../assets/soundDefault.png')} style={style.img}/>
+             <Image source={require('../../assets/defaultImage.png')} style={style.img}/>
 
             <TextInput
                 label="Opçao 1"
@@ -34,7 +34,7 @@ export function CreateOption() {
                 activeUnderlineColor="green"
                 underlineColor="#EF5454"
                 onChangeText={(text) => setOpcao1(text)} />
-             <Image source={require('../../assets/soundDefault.png')} style={style.img}/>
+             <Image source={require('../../assets/defaultImage.png')} style={style.img}/>
 
             <TextInput
                 label="Opçao 2"
@@ -42,7 +42,7 @@ export function CreateOption() {
                 activeUnderlineColor="green"
                 underlineColor="#EF5454"
                 onChangeText={(text) => setOpcao2(text)} />
-             <Image source={require('../../assets/soundDefault.png')} style={style.img}/>
+             <Image source={require('../../assets/defaultImage.png')} style={style.img}/>
 
             <TextInput
                 label="Opçao 3"
@@ -50,7 +50,7 @@ export function CreateOption() {
                 activeUnderlineColor="green"
                 underlineColor="#EF5454"
                 onChangeText={(text) => setOpcao3(text)} />
-             <Image source={require('../../assets/soundDefault.png')} style={style.img}/>
+             <Image source={require('../../assets/defaultImage.png')} style={style.img}/>
 
             <TouchableOpacity style={style.button}>
                 <Text style={style.text}>Criar atividade</Text>

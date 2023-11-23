@@ -1,13 +1,32 @@
 import { TextInput } from "react-native-paper"
 import { StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native"
+
 
 export function CreateListening(){
+    var navigation = useNavigation()
     const [resposta, setRespota] = useState('')
     const [alternativa1, setAlternativa1] = useState('')
     const [alternativa2, setAlternativa2] = useState('')
     const [alternativa3, setAlternativa3] = useState('')
 
+    const create = async() =>
+    {
+        const activity = {
+            resposta,
+            alternativa1,
+            alternativa2,
+            alternativa3,
+            nivel: "sla"
+        }
+
+        const jwt = sessionStorage.getItem("token")
+        const res = await axios.post("http://localhost:8080/activity/listening", activity, {headers: {"Authorization":"Bearer"+jwt}})
+        if(res.data == true)
+           navigation.navigate("ViewNiveis")
+    }
 
     return(
         <>
@@ -38,7 +57,7 @@ export function CreateListening(){
                     underlineColor="#EF5454"
                     onChangeText={(text) => setAlternativa3(text)} />
 
-            <TouchableOpacity style={style.button}>
+            <TouchableOpacity style={style.button} onPress={() => create()}>
                 <Text style={style.text}>Criar atividade</Text>
             </TouchableOpacity>
         </>
