@@ -9,35 +9,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.maite.back.models.ListeningModel;
-import com.maite.back.services.ActivityService;
+import com.maite.back.services.ListeningService;
 import com.maite.back.services.AuthService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/listening")
-public class ActivityController {
-    
+public class ListeningController {
+
     @Autowired
-    private ActivityService activityService;
+    private ListeningService listeningService;
 
     @Autowired
     private AuthService authService;
 
-
     @PostMapping("")
-    public boolean newLisnening(@RequestBody ListeningModel newListening, @RequestHeader("Authorization") String token)
-    {
+    public boolean newLisnening(@RequestBody ListeningModel newListening,
+            @RequestHeader("Authorization") String token) {
         final var validate = this.authService.validateToken(token.replace("Bearer ", ""));
-        if(validate.isBlank())
+        if (validate.isBlank())
             return false;
-        activityService.saveListening(newListening);
+        listeningService.saveListening(newListening);
         return true;
     }
 
     @GetMapping("")
-    public List<ListeningModel> getByLevel(@RequestHeader("Authorization") String token, @RequestBody String level){
+    public List<ListeningModel> getByLevel(@RequestHeader("Authorization") String token, @RequestBody String level) {
         this.authService.validateToken(token.replace("Bearer ", ""));
-        return activityService.getAll(level);
+        return listeningService.getByLevel(level);
     }
 }

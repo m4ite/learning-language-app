@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.maite.back.models.ListeningModel;
 import com.maite.back.repository.ListeningRepository;
 
 @Service
-public class ActivityService {
+public class ListeningService {
     
     @Autowired
     private ListeningRepository listeningRepository;
@@ -18,7 +19,7 @@ public class ActivityService {
         return this.listeningRepository.save(listeningModel);
     }
 
-    public List<ListeningModel> getAll(String level){
+    public List<ListeningModel> getByLevel(String level){
         return this.listeningRepository.findByLevel(level);
     }
 }

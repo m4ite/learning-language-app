@@ -1,12 +1,19 @@
 import { TouchableOpacity, View, Text, Image, StyleSheet } from "react-native"
 import { Icon, TextInput } from "react-native-paper"
 import { useState } from "react"
+import axios from "axios"
 
 export function CreateNivel(props) {
     const [title, setTitle] = useState("")
 
     async function create() {
-        props.navigation.navigate("ViewNiveis")
+        const nivel = {
+            Name: title
+        }
+        const jwt = sessionStorage.getItem('token')
+        const res = await axios.post("http://localhost:8080/level", nivel,{headers: {"Authorization":"Bearer " + jwt}})
+        if(res.data)
+            props.navigation.navigate("ViewNiveis")
     }
 
     return (

@@ -68,7 +68,6 @@ public class AuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserModel resp = this.userService.findByEmail(email);
-        System.out.println("---------------------");
         if(resp != null){
             if (resp.getEmail().equals(email)) {
                 return resp;

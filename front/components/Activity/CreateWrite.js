@@ -1,22 +1,44 @@
 import { TextInput } from "react-native-paper"
 import { StyleSheet, TouchableOpacity, Text } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 import { useState } from "react"
+import axios from "axios"
 
 export function CreateWrite() {
+    var navigation = useNavigation()
+
     const [enunciado, setEnunciado] = useState('')
     const [resposta, setResposta] = useState('')
 
-    const [palavra1, setPalavra1] = useState('')
-    const [palavra2, setPalavra2] = useState('')
-    const [palavra3, setPalavra3] = useState('')
-    const [palavra4, setPalavra4] = useState('')
-    const [palavra5, setPalavra5] = useState('')
-    const [palavra6, setPalavra6] = useState('')
-    const [palavra7, setPalavra7] = useState('')
-    const [palavra8, setPalavra8] = useState('')
+    const [Palavra1, setPalavra1] = useState('')
+    const [Palavra2, setPalavra2] = useState('')
+    const [Palavra3, setPalavra3] = useState('')
+    const [Palavra4, setPalavra4] = useState('')
+    const [Palavra5, setPalavra5] = useState('')
+    const [Palavra6, setPalavra6] = useState('')
+    const [Palavra7, setPalavra7] = useState('')
+    const [Palavra8, setPalavra8] = useState('')
 
+    const create = async () => {
+        const write = {
+            enunciado,
+            resposta,
+            Palavra1,
+            Palavra2,
+            Palavra3,
+            Palavra4,
+            Palavra5,
+            Palavra6,
+            Palavra7,
+            Palavra8,
+            Nivel: "sla"
+        }
 
-
+        const jwt = sessionStorage.getItem("token")
+        const res = await axios.post("http://localhost:8080/writing", write, { headers: { "Authorization": "Bearer " + jwt } })
+        if (res.data == true)
+            navigation.navigate("ViewNiveis")
+    }
 
     return (
         <>
@@ -88,7 +110,7 @@ export function CreateWrite() {
                 onChangeText={(text) => setPalavra8(text)} />
 
 
-<TouchableOpacity style={style.button}>
+            <TouchableOpacity style={style.button} onPress={() => create()}>
                 <Text style={style.text}>Criar atividade</Text>
             </TouchableOpacity>
         </>
@@ -103,14 +125,14 @@ const style = StyleSheet.create({
         borderColor: "gray",
         marginHorizontal: 50,
     },
-    button:{
+    button: {
         backgroundColor: "#EF5454",
         padding: "1em",
         borderRadius: 20,
         marginHorizontal: 50,
         marginVertical: 20
     },
-    text:{
+    text: {
         textAlign: "center",
         color: "white",
         fontWeight: 600,

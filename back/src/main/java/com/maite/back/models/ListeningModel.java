@@ -8,7 +8,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-@Document("activity")
+@Document("listening")
 public class ListeningModel {
     @Id
     public String id;
