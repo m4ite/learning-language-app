@@ -1,13 +1,15 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
 import { Picker } from '@react-native-picker/picker';
 import { Icon } from "react-native-paper"
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
 import { CreateListening } from "../../components/Activity/CreateListening";
 import { CreateWrite } from "../../components/Activity/CreateWrite";
 import { CreateOption } from "../../components/Activity/CreateOptions";
+import { levelContext } from '../../context/levelContext'
 
 export function CreateAtividades(props) {
     const [selectedActivityTtype, setType] = useState();
+    const {level, setLevel} = useContext(levelContext)
 
     function renderForm() {
         if (selectedActivityTtype == "Listening")
@@ -29,7 +31,7 @@ export function CreateAtividades(props) {
 
             <Image source={require("../../assets/atividade.png")} style={style.img} />
             <Text style={style.title}>Criar nova atividade</Text>
-            <Text style={style.name}>Nivel Name</Text>
+            <Text style={style.name}>{level}</Text>
 
             <View style={{marginHorizontal: 50}}>
                 <Picker onValueChange={(itemValue, itemIndex) => setType(itemValue)} style={style.picker}>

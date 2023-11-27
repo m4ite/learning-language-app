@@ -1,28 +1,41 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { TouchableOpacity, ScrollView, Text, StyleSheet, Image, FlatList, View } from "react-native"
 import { Icon, List, MD3Colors } from "react-native-paper"
+import { levelContext } from '../../context/levelContext'
 
 export function ViewNiveis(props) {
-
     const [niveis, setNiveis] = useState([])
 
+    const { level, setLevel } = useContext(levelContext)
+    const [atividades, setAtividades] = useState([])
+    const jwt = sessionStorage.getItem("token")
+    const header = { headers: { "Authorization": " Bearer " + jwt }}
+
     async function getNiveis() {
-        const jwt = sessionStorage.getItem("token")
-        await axios.get("http://localhost:8080/level", { headers: { "Authorization": " Bearer " + jwt } })
+        
+        await axios.get("http://localhost:8080/level",  header)
             .then((response) => {
                 setNiveis(response.data)
             })
     }
 
+    async function getActivity(nivel) {
+        const json = {"nome": nivel}
+        console.log(json)
+        await axios.get("http://localhost:8080/listening", header, json).then((res) => {
+            console.log(res)
+        })   
+    }
+
+    function createActivity(nivel) {
+        setLevel(nivel)
+        props.navigation.navigate("CreateAtividade")
+    }
+
     useEffect(() => {
         getNiveis()
     }, [])
-
-    async function getActivity(nivel) {
-        const jwt = sessionStorage.getItem("token");
-        await axios.get("", { headers: { "Authorization": "Bearer " + jwt } })
-    }
 
     return (
         <>
@@ -34,24 +47,20 @@ export function ViewNiveis(props) {
 
             <Text style={style.title}>Níveis Criados</Text>
             <ScrollView style={style.Accordion}>
-                <List.AccordionGroup>
-                    <FlatList data={niveis}
-                        keyExtractor={(item, index) => item + index}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity onPress={() => getActivity()}>
-                                <List.Accordion title={`${item.Name}`} id={item.id}>
-                                    <TouchableOpacity>
-                                        <List.Item style={style.List} title="Atividade 1"
-                                            left={props => <List.Icon {...props} icon="file-document-outline" />} />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => props.navigation.navigate("CreateAtividade")}>
-                                        <List.Item style={style.List} title="Criar atividade"
-                                            left={props => <List.Icon {...props} icon="plus" />} />
-                                    </TouchableOpacity>
-                                </List.Accordion>
+                <FlatList data={niveis}
+                    keyExtractor={(item, index) => item + index}
+                    renderItem={({ item }) => (
+                        <List.Accordion title={`${item.name}`} id={item.id} onPress={() => getActivity(item.name)}>
+                            <TouchableOpacity>
+                                <List.Item style={style.List} title="Atividade 1"
+                                    left={props => <List.Icon {...props} icon="file-document-outline" />} />
                             </TouchableOpacity>
-                        )} />
-                </List.AccordionGroup>
+                            <TouchableOpacity onPress={() => createActivity(item.name)}>
+                                <List.Item style={style.List} title="Criar atividade"
+                                    left={props => <List.Icon {...props} icon="plus" />} />
+                            </TouchableOpacity>
+                        </List.Accordion>
+                    )} />
             </ScrollView>
             <TouchableOpacity style={style.plus} onPress={() => props.navigation.navigate("CreateNivel")}>
                 <Icon source="plus" color={MD3Colors.error100} size={40} />

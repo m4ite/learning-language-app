@@ -11,6 +11,6 @@ import lombok.Data;
 @Document("level")
 public class LevelModel {
     @Id
-    public String Id;
-    public String Name;
+    public String id;
+    public String name;
 }

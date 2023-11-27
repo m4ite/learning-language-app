@@ -35,8 +35,8 @@ public class ListeningController {
     }
 
     @GetMapping("")
-    public List<ListeningModel> getByLevel(@RequestHeader("Authorization") String token, @RequestBody String level) {
+    public List<ListeningModel> getByLevel(@RequestHeader("Authorization") String token, @RequestBody ListeningModel level) {
         this.authService.validateToken(token.replace("Bearer ", ""));
-        return listeningService.getByLevel(level);
+        return listeningService.getByLevel(level.nome);
     }
 }

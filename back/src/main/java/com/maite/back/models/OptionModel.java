@@ -8,21 +8,16 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-@Document("write")
-public class WriteModel {
+@Document("option")
+public class OptionModel {
     @Id
     public String id;
     public String nome;
     public String enunciado;
     public String resposta;
-    public String palavra1;
-    public String palavra2;
-    public String palavra3;
-    public String palavra4;
-    public String palavra5;
-    public String palavra6;
-    public String palavra7;
-    public String palavra8;
+    public String opcao1;
+    public String opcao2;
+    public String opcao3;
     public String nivel;
     public String tipo;
 }

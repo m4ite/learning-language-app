@@ -1,37 +1,40 @@
 import { TextInput } from "react-native-paper"
 import { StyleSheet, TouchableOpacity, Text } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { levelContext } from '../../context/levelContext'
 import axios from "axios"
 
 export function CreateWrite() {
     var navigation = useNavigation()
-
+    const {level, setLevel} = useContext(levelContext)
     const [enunciado, setEnunciado] = useState('')
     const [resposta, setResposta] = useState('')
-
-    const [Palavra1, setPalavra1] = useState('')
-    const [Palavra2, setPalavra2] = useState('')
-    const [Palavra3, setPalavra3] = useState('')
-    const [Palavra4, setPalavra4] = useState('')
-    const [Palavra5, setPalavra5] = useState('')
-    const [Palavra6, setPalavra6] = useState('')
-    const [Palavra7, setPalavra7] = useState('')
-    const [Palavra8, setPalavra8] = useState('')
+    const [nome, setNome] = useState('')
+    const [palavra1, setPalavra1] = useState('')
+    const [palavra2, setPalavra2] = useState('')
+    const [palavra3, setPalavra3] = useState('')
+    const [palavra4, setPalavra4] = useState('')
+    const [palavra5, setPalavra5] = useState('')
+    const [palavra6, setPalavra6] = useState('')
+    const [palavra7, setPalavra7] = useState('')
+    const [palavra8, setPalavra8] = useState('')
 
     const create = async () => {
         const write = {
+            nome,
             enunciado,
             resposta,
-            Palavra1,
-            Palavra2,
-            Palavra3,
-            Palavra4,
-            Palavra5,
-            Palavra6,
-            Palavra7,
-            Palavra8,
-            Nivel: "sla"
+            palavra1,
+            palavra2,
+            palavra3,
+            palavra4,
+            palavra5,
+            palavra6,
+            palavra7,
+            palavra8,
+            nivel: "Nivel 1",
+            tipo: "write"
         }
 
         const jwt = sessionStorage.getItem("token")
@@ -42,6 +45,13 @@ export function CreateWrite() {
 
     return (
         <>
+            <TextInput
+                label="Nome da atividade"
+                style={style.input}
+                activeUnderlineColor="green"
+                underlineColor="#EF5454"
+                onChangeText={(text) => setNome(text)} />
+
             <TextInput
                 label="Enunciado"
                 style={style.input}

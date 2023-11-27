@@ -1,17 +1,40 @@
 import { TextInput } from "react-native-paper"
 import { StyleSheet, TouchableOpacity, Text, Image } from "react-native"
-import { useState } from "react"
+import { useState,useContext } from "react"
+import { useNavigation } from "@react-navigation/native"
+import { levelContext } from '../../context/levelContext'
 
 export function CreateOption() {
+    var navigation = useNavigation()
+    const {level, setLevel} = useContext(levelContext)
+    const [nome, setNome] = useState('')
     const [enunciado, setEnunciado] = useState('')
     const [resposta, setResposta] = useState('')
     const [opcao1, setOpcao1] = useState('')
     const [opcao2, setOpcao2] = useState('')
     const [opcao3, setOpcao3] = useState('')
 
+    const create = async () => {
+        const activity = {
+            nome,
+            enunciado,
+            resposta,
+            opcao1,
+            opcao2,
+            opcao3,
+            nivel: level,
+            tipo: "listening"
+        }
+    }
 
     return (
         <>
+            <TextInput
+                label="Nome da atividade"
+                style={style.input}
+                activeUnderlineColor="green"
+                underlineColor="#EF5454"
+                onChangeText={(text) => setNome(text)} />
             <TextInput
                 label="Enunciado"
                 style={style.input}
@@ -26,7 +49,7 @@ export function CreateOption() {
                 underlineColor="#EF5454"
                 onChangeText={(text) => setResposta(text)} />
 
-             <Image source={require('../../assets/defaultImage.png')} style={style.img}/>
+            <Image source={require('../../assets/defaultImage.png')} style={style.img} />
 
             <TextInput
                 label="Opçao 1"
@@ -34,7 +57,7 @@ export function CreateOption() {
                 activeUnderlineColor="green"
                 underlineColor="#EF5454"
                 onChangeText={(text) => setOpcao1(text)} />
-             <Image source={require('../../assets/defaultImage.png')} style={style.img}/>
+            <Image source={require('../../assets/defaultImage.png')} style={style.img} />
 
             <TextInput
                 label="Opçao 2"
@@ -42,7 +65,7 @@ export function CreateOption() {
                 activeUnderlineColor="green"
                 underlineColor="#EF5454"
                 onChangeText={(text) => setOpcao2(text)} />
-             <Image source={require('../../assets/defaultImage.png')} style={style.img}/>
+            <Image source={require('../../assets/defaultImage.png')} style={style.img} />
 
             <TextInput
                 label="Opçao 3"
@@ -50,7 +73,7 @@ export function CreateOption() {
                 activeUnderlineColor="green"
                 underlineColor="#EF5454"
                 onChangeText={(text) => setOpcao3(text)} />
-             <Image source={require('../../assets/defaultImage.png')} style={style.img}/>
+            <Image source={require('../../assets/defaultImage.png')} style={style.img} />
 
             <TouchableOpacity style={style.button}>
                 <Text style={style.text}>Criar atividade</Text>

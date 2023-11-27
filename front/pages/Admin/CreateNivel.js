@@ -8,7 +8,7 @@ export function CreateNivel(props) {
 
     async function create() {
         const nivel = {
-            Name: title
+            name: title
         }
         const jwt = sessionStorage.getItem('token')
         const res = await axios.post("http://localhost:8080/level", nivel,{headers: {"Authorization":"Bearer " + jwt}})
