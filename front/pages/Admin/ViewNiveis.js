@@ -6,26 +6,37 @@ import { levelContext } from '../../context/levelContext'
 
 export function ViewNiveis(props) {
     const [niveis, setNiveis] = useState([])
-
     const { level, setLevel } = useContext(levelContext)
-    const [atividades, setAtividades] = useState([])
+    const [write, setWrite] = useState([])
+    const [options, setOptions] = useState([])
+    const [list, setList] = useState([])
+
     const jwt = sessionStorage.getItem("token")
-    const header = { headers: { "Authorization": " Bearer " + jwt }}
+    const header = { headers: { "Authorization": " Bearer " + jwt } }
 
     async function getNiveis() {
-        
-        await axios.get("http://localhost:8080/level",  header)
+        await axios.get("http://localhost:8080/level", header)
             .then((response) => {
                 setNiveis(response.data)
             })
     }
 
     async function getActivity(nivel) {
-        const json = {"nome": nivel}
-        console.log(json)
-        await axios.get("http://localhost:8080/listening", header, json).then((res) => {
-            console.log(res)
-        })   
+        const json = { "nome": nivel }
+        await axios.post(`http://localhost:8080/listening/level`, json, header)
+            .then((res) => {
+                setList(res.data)
+            })
+
+        await axios.post("http://localhost:8080/option/level", json, header)
+            .then((res) => {
+                setOptions(res.data)
+            })
+
+        await axios.post("http://localhost:8080/writing/level", json, header)
+            .then((res) => {
+                setWrite(res.data)
+            })
     }
 
     function createActivity(nivel) {
@@ -51,11 +62,34 @@ export function ViewNiveis(props) {
                     keyExtractor={(item, index) => item + index}
                     renderItem={({ item }) => (
                         <List.Accordion title={`${item.name}`} id={item.id} onPress={() => getActivity(item.name)}>
-                            <TouchableOpacity>
-                                <List.Item style={style.List} title="Atividade 1"
-                                    left={props => <List.Icon {...props} icon="file-document-outline" />} />
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => createActivity(item.name)}>
+                            <FlatList data={list}
+                                keyExtractor={(item, index) => item + index}
+                                renderItem={({ item }) => (
+                                    <TouchableOpacity id={item}>
+                                        <List.Item style={style.List} title={item.nome}
+                                            left={props => <List.Icon {...props} icon="file-document-outline" />} />
+                                    </TouchableOpacity>
+                                )} />
+
+                            <FlatList data={options}
+                                keyExtractor={(item, index) => item + index}
+                                renderItem={({ item }) => (
+                                    <TouchableOpacity id={item}>
+                                        <List.Item style={style.List} title={item.nome}
+                                            left={props => <List.Icon {...props} icon="file-document-outline" />} />
+                                    </TouchableOpacity>
+                                )} />
+
+                            <FlatList data={write}
+                                keyExtractor={(item, index) => item + index}
+                                renderItem={({ item }) => (
+                                    <TouchableOpacity id={item}>
+                                        <List.Item style={style.List} title={item.nome}
+                                            left={props => <List.Icon {...props} icon="file-document-outline" />} />
+                                    </TouchableOpacity>
+                                )} />
+
+                            < TouchableOpacity onPress={() => createActivity(item.name)}>
                                 <List.Item style={style.List} title="Criar atividade"
                                     left={props => <List.Icon {...props} icon="plus" />} />
                             </TouchableOpacity>

@@ -9,7 +9,17 @@ export function CreateHistorias(props) {
     const [xp, setXp] = useState(0)
 
     async function create(){
-        props.navigation.navigate("ViewHistoria")
+        const newHistoria = {
+            title,
+            content,
+            image,
+            xp
+        }
+        const jwt = sessionStorage.getItem('token')
+        const res = await axios.post("http://localhost:8080/level", newHistoria,{headers: {"Authorization":"Bearer " + jwt}})
+
+        if(res.data)
+            props.navigation.navigate("ViewHistoria")
     }
 
     return (

@@ -20,4 +20,26 @@ public class OptionModel {
     public String opcao3;
     public String nivel;
     public String tipo;
+
+    public OptionModel(String nome) {
+        this.nome = nome;
+    }
+
+    public OptionModel(String nome, String enunciado,
+            String resposta, String opcao1,
+            String opcao2, String opcao3,
+            String nivel, String tipo) {
+        this.nome = nome;
+        this.enunciado = enunciado;
+        this.resposta = resposta;
+        this.opcao1 = opcao1;
+        this.opcao2 = opcao2;
+        this.opcao3 = opcao3;
+        this.nivel = nivel;
+        this.tipo = tipo;
+    }
+
+    public OptionModel(){
+        
+    }
 }

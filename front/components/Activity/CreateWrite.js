@@ -33,7 +33,7 @@ export function CreateWrite() {
             palavra6,
             palavra7,
             palavra8,
-            nivel: "Nivel 1",
+            nivel: level,
             tipo: "write"
         }
 

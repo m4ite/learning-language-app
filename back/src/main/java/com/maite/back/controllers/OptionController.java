@@ -1,7 +1,6 @@
 package com.maite.back.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -33,9 +32,9 @@ public class OptionController {
         return true;
     }
 
-    @GetMapping("")
-    public List<OptionModel> getByLevel(@RequestHeader ("Authorization") String token, @RequestBody String level){
+    @PostMapping("/level")
+    public List<OptionModel> getByLevel(@RequestHeader ("Authorization") String token, @RequestBody OptionModel level){
         this.authService.validateToken(token.replace("Bearer ", ""));
-        return optionService.getByLevel(level);
+        return optionService.getByLevel(level.nome);
     }
 }

@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, Text, Image } from "react-native"
 import { useState,useContext } from "react"
 import { useNavigation } from "@react-navigation/native"
 import { levelContext } from '../../context/levelContext'
+import axios from "axios"
 
 export function CreateOption() {
     var navigation = useNavigation()
@@ -15,6 +16,7 @@ export function CreateOption() {
     const [opcao3, setOpcao3] = useState('')
 
     const create = async () => {
+        console.log(level)
         const activity = {
             nome,
             enunciado,
@@ -23,8 +25,13 @@ export function CreateOption() {
             opcao2,
             opcao3,
             nivel: level,
-            tipo: "listening"
+            tipo: "option"
         }
+
+        const jwt = sessionStorage.getItem("token")
+        const res = await axios.post("http://localhost:8080/option", activity, { headers: { "Authorization": "Bearer " + jwt } })
+        if(res.data == true)
+            navigation.navigate("ViewNiveis")
     }
 
     return (
@@ -76,7 +83,7 @@ export function CreateOption() {
             <Image source={require('../../assets/defaultImage.png')} style={style.img} />
 
             <TouchableOpacity style={style.button}>
-                <Text style={style.text}>Criar atividade</Text>
+                <Text style={style.text} onPress={() => create()}>Criar atividade</Text>
             </TouchableOpacity>
         </>
     )

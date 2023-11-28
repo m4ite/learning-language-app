@@ -32,9 +32,9 @@ public class WriteController {
         return true;
     }
 
-    @GetMapping("")
-    public List<WriteModel> getByLevel(@RequestHeader("Authorization") String token, @RequestBody String nivel){
+    @PostMapping("/level")
+    public List<WriteModel> getByLevel(@RequestHeader("Authorization") String token, @RequestBody WriteModel level){
         this.authService.validateToken(token.replace("Bearer ", ""));
-        return writeService.getAll(nivel);
+        return writeService.getByLevel(level.nome);
     }
 }
