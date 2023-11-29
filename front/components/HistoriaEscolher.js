@@ -1,35 +1,42 @@
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
+import { Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from "@react-navigation/native"
+import { storyContext } from '../context/storyContext'
+import { useContext } from 'react'
 
 export function HistoriaEscolher(props) {
     var navigation = useNavigation()
+    const {story, setStory} = useContext(storyContext)
+
+    function nav(title){
+        setStory(title)
+        navigation.navigate("HistoriaDetail")
+    }
+
     return (
-        <>
-            <TouchableOpacity style={style.container} onPress={() => navigation.navigate("HistoriaDetail")}>
-                <Image source={require("../assets/" + props.image)} style={style.img}/>
-                <Text style={style.title}>{props.title}</Text>
-                <Text style={style.xp}>+ {props.xp} XP</Text>
-            </TouchableOpacity>
-        </>
+        <TouchableOpacity style={style.container} onPress={() => nav(props.title)}>
+            <Image source={require("../assets/" + props.image)} style={style.img} />
+            <Text style={style.title}>{props.title}</Text>
+            <Text style={style.xp}>+ {props.xp} XP</Text>
+        </TouchableOpacity>
     )
 }
 
 const style = StyleSheet.create({
-    img:{
+    img: {
         width: "150px",
         height: "150px",
         alignSelf: 'center'
-        
-        
+
+
     },
-    title:{
+    title: {
         fontWeight: "600",
         textAlign: 'center'
     },
-    xp:{
+    xp: {
         textAlign: 'center'
     },
-    container:{
+    container: {
         width: "50%",
         padding: "2em"
     }

@@ -1,6 +1,24 @@
-import { View, StyleSheet, ScrollView, Text, Image } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, Image, FlatList } from 'react-native'
 import { HistoriaEscolher } from '../../components/HistoriaEscolher';
+import { useState, useEffect } from 'react';
+import axios from "axios"
 export function Historias(props) {
+    const [historias, setHistorias] = useState([])
+    const jwt = sessionStorage.getItem("token")
+    const header = { headers: { "Authorization": " Bearer " + jwt } }
+
+    async function get(){
+        await axios.get("http://localhost:8080/story", header)
+        .then((response) => {
+            setHistorias(response.data)
+            console.log(response.data)
+        })
+    }
+
+    useEffect(() => {
+        get()
+    }, [])
+
     return (
         <>
             <Image source={require("../../assets/hello.png")} style={style.img} />
@@ -9,21 +27,11 @@ export function Historias(props) {
                 <Text style={style.subtitle}>Melhore a sua leitura, escuta e fala com histórias curtinhas</Text>
             </View>
 
-
             <ScrollView>
                 <Text style={style.h2}><Text style={style.span}>Série 1</Text></Text>
                 <View style={style.grid}>
-                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
-                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
-                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
-                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
-                </View>
-
-                <Text style={style.h2}><Text style={style.span}>Série 2</Text></Text>
-                <View style={style.grid}>
-                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
-                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
-                    <HistoriaEscolher title="A Rainy Day" xp="15" image="rainyDay.png"/>
+                {historias.map((item) => 
+                        <HistoriaEscolher key={item.id} title={item.title} xp={item.xp} image="rainyDay.png"/>)}
                 </View>
             </ScrollView>
         </>

@@ -1,6 +1,7 @@
 package com.maite.back.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.maite.back.models.StoryModel;
 import com.maite.back.services.AuthService;
 import com.maite.back.services.StoryService;
+
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/story")
@@ -28,6 +32,11 @@ public class StoryController {
         
         storyService.save(newStory);
         return true;
+    }
+
+    @GetMapping("")
+    public List<StoryModel> getAll(){
+        return this.storyService.getAll();
     }
 
     @PostMapping("/get")

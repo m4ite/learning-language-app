@@ -55,7 +55,6 @@ public class AuthService implements UserDetailsService {
                     .withIssuer(issuer)
                     .build()
                     .verify(token);
-
             final var anSubject = decoded.getSubject();
             
             return anSubject;

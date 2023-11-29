@@ -7,7 +7,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-@Document("user")
+@Document("story")
 
 public class StoryModel{
     @Id

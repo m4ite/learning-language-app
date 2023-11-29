@@ -1,6 +1,8 @@
 import { TouchableOpacity, View, Text, Image, StyleSheet } from "react-native"
 import { TextInput, Icon } from 'react-native-paper';
 import { useState } from "react";
+import axios from "axios"
+
 
 export function CreateHistorias(props) {
     const [title, setTitle] = useState("")
@@ -16,7 +18,7 @@ export function CreateHistorias(props) {
             xp
         }
         const jwt = sessionStorage.getItem('token')
-        const res = await axios.post("http://localhost:8080/level", newHistoria,{headers: {"Authorization":"Bearer " + jwt}})
+        const res = await axios.post("http://localhost:8080/story", newHistoria,{headers: {"Authorization":"Bearer " + jwt}})
 
         if(res.data)
             props.navigation.navigate("ViewHistoria")

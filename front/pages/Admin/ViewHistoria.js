@@ -1,7 +1,27 @@
-import { ScrollView, TouchableOpacity, View, Image, Text, StyleSheet } from "react-native"
+import { useEffect, useState } from "react"
+import { ScrollView, TouchableOpacity, View, Image, Text, StyleSheet, FlatList } from "react-native"
 import { Icon } from "react-native-paper"
+import axios from "axios"
+
 
 export function ViewHistoria(props) {
+    const [historias, setHistorias] = useState("")
+
+    const jwt = sessionStorage.getItem("token")
+    const header = { headers: { "Authorization": " Bearer " + jwt } }
+
+    async function get() {
+        await axios.get("http://localhost:8080/story", header)
+            .then((response) => {
+                setHistorias(response.data)
+                console.log(response.data)
+            })
+    }
+
+    useEffect(() => {
+        get()
+    }, [])
+
     return (
         <View style={style.bg}>
             <TouchableOpacity onPress={() => props.navigation.navigate('HomeADM')} style={{ padding: 10 }}>
@@ -18,17 +38,23 @@ export function ViewHistoria(props) {
             </TouchableOpacity>
 
             <ScrollView>
-                <TouchableOpacity style={style.containerOut}>
-                    <View style={style.container}>
-                        <View style={{ width: "50%" }}>
-                            <Image source={require("../../assets/rainyDay.png")} style={style.img} />
-                        </View>
+                <FlatList data={historias}
+                    keyExtractor={(item, index) => item + index}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity style={style.containerOut}>
+                            <View style={style.container}>
+                                <View style={{ width: "50%" }}>
+                                    <Image source={require("../../assets/rainyDay.png")} style={style.img} />
+                                </View>
 
-                        <View style={{ width: "50%" }}>
-                            <Text style={style.txt}>Rainy Day</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
+                                <View style={{ width: "50%" }}>
+                                    <Text style={style.txt}>{item.title}</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                    )} />
+
+
             </ScrollView>
         </View>
     )

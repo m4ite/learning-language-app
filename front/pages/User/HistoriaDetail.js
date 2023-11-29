@@ -1,7 +1,27 @@
 import { Text, Image, StyleSheet, ScrollView, View, TouchableOpacity } from 'react-native'
 import { Icon } from 'react-native-paper'
+import axios from "axios"
+import { useContext, useEffect, useState } from 'react'
+import {storyContext} from "../../context/storyContext"
 
 export function HistoriaDetail(props) {
+    const jwt = sessionStorage.getItem("token")
+    const header = { headers: { "Authorization": " Bearer " + jwt } }
+    const [historia, setHistoria] = useState()
+    const {story, setStory} = useContext(storyContext)
+
+    async function get() {
+        const json = {"title": story}
+        await axios.post("http://localhost:8080/story/get", header,json)
+            .then((response) => {
+                setHistoria(response.data)
+                console.log(response.data)
+            })
+    }
+
+    useEffect(() => {
+        get()
+    }, [])
 
     return (
         <>
