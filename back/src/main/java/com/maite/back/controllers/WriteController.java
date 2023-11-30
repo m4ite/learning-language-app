@@ -37,4 +37,10 @@ public class WriteController {
         this.authService.validateToken(token.replace("Bearer ", ""));
         return writeService.getByLevel(level.nome);
     }
+
+    @GetMapping("")
+    public List<WriteModel> getAll(@RequestHeader("Authorization") String token){
+        this.authService.validateToken(token.replace("Bearer ", ""));
+        return writeService.getAll();
+    }
 }

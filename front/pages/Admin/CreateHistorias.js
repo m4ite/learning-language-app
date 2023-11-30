@@ -10,7 +10,7 @@ export function CreateHistorias(props) {
     const [image, setImage] = useState("")
     const [xp, setXp] = useState(0)
 
-    async function create(){
+    async function create() {
         const newHistoria = {
             title,
             content,
@@ -18,55 +18,49 @@ export function CreateHistorias(props) {
             xp
         }
         const jwt = sessionStorage.getItem('token')
-        const res = await axios.post("http://localhost:8080/story", newHistoria,{headers: {"Authorization":"Bearer " + jwt}})
+        const res = await axios.post("http://localhost:8080/story", newHistoria, { headers: { "Authorization": "Bearer " + jwt } })
 
-        if(res.data)
+        if (res.data)
             props.navigation.navigate("ViewHistoria")
     }
 
     return (
-        <>
-            <View style={style.bg}>
-                <TouchableOpacity onPress={() => props.navigation.navigate("ViewHistoria")}><Icon source="chevron-left" size={20} /></TouchableOpacity>
-                <Image source={require("../../assets/book2.png")} style={style.img} />
+        <View style={style.bg}>
+            <TouchableOpacity onPress={() => props.navigation.navigate("ViewHistoria")}><Icon source="chevron-left" size={20} /></TouchableOpacity>
+            <Image source={require("../../assets/book2.png")} style={style.img} />
+            <Text style={style.title}>Crie uma nova história</Text>
+            <Image source={require("../../assets/defaultHistoria.png")} style={style.imgDefault} />
 
-                <Text style={style.title}>Crie uma nova história</Text>
+            <TextInput
+                label="Titulo"
+                onChangeText={p => setTitle(p)}
+                left={<TextInput.Icon icon="format-title" />}
+                style={style.input}
+                activeUnderlineColor="green"
+                underlineColor="#EF5454" />
 
-                <Image source={require("../../assets/defaultHistoria.png")} style={style.imgDefault} />
+            <TextInput
+                label="Historia"
+                onChangeText={p => setContent(p)}
+                left={<TextInput.Icon icon="subtitles-outline" />}
+                style={style.input}
+                activeUnderlineColor="green"
+                multiline
+                numberOfLines={9}
+                underlineColor="#EF5454" />
 
-                <TextInput
-                    label="Titulo"
-                    onChangeText={p => setTitle(p)}
-                    left={<TextInput.Icon icon="format-title" />}
-                    style={style.input}
-                    activeUnderlineColor="green"
-                    underlineColor="#EF5454" />
+            <TextInput label="Xp"
+                onChangeText={p => setXp(p)}
+                style={style.input}
+                left={<TextInput.Icon icon="creation" />}
+                activeUnderlineColor="green"
+                underlineColor="#EF5454" />
 
-                <TextInput
-                    label="Historia"
-                    onChangeText={p => setContent(p)}
-                    left={<TextInput.Icon icon="subtitles-outline" />}
-                    style={style.input}
-                    activeUnderlineColor="green"
-                    multiline
-                    numberOfLines={9}
-                    underlineColor="#EF5454" />
+            <TouchableOpacity style={style.button} onPress={() => create()}>
+                <Text style={style.buttonText}>Criar</Text>
+            </TouchableOpacity>
 
-                <TextInput label="Xp"
-                    onChangeText={p => setXp(p)}
-                    style={style.input}
-                    left={<TextInput.Icon icon="creation" />}
-                    activeUnderlineColor="green"
-                    underlineColor="#EF5454" />
-
-                <TouchableOpacity style={style.button} onPress={() => create()}>
-                    <Text style={style.buttonText}>Criar</Text>
-                </TouchableOpacity>
-
-            </View>
-
-
-        </>
+        </View>
     )
 }
 
@@ -112,5 +106,5 @@ const style = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: 30,
         borderRadius: 15,
-      },
+    }
 })

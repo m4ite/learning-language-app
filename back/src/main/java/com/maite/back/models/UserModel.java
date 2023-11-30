@@ -24,10 +24,10 @@ public class UserModel implements UserDetails{
     public String proficience;
     public String password;
     public String salt;
-    public short adm;
+    public boolean adm;
     public short xp;
 
-    public UserModel(String name, String email, short age, String proficience, String password, String salt)
+    public UserModel(String name, String email, short age, String proficience, String password, String salt, Boolean adm)
     {
         this.name = name;
         this.email = email;
@@ -35,12 +35,18 @@ public class UserModel implements UserDetails{
         this.proficience = proficience;
         this.password = password;
         this.salt = salt;
+        this.adm = adm;
     }
 
     public UserModel(String email, String password) 
     {
         this.email = email;
         this.password = password;
+    }
+    
+    public UserModel(String email) 
+    {
+        this.email = email;
     }
 
     public UserModel(){

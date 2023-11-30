@@ -25,8 +25,15 @@ public class StoryModel{
         this.image = image;
     }
 
+    public StoryModel(String title) 
+    {
+        this.title = title;
+    }
+    
     public StoryModel() 
     {
         
     }
+
+    
 }

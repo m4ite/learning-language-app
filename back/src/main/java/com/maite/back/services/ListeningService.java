@@ -21,4 +21,9 @@ public class ListeningService {
     public List<ListeningModel> getByLevel(String level){
         return this.listeningRepository.findByLevel(level);
     }
+
+    public List<ListeningModel> getAll()
+    {
+        return this.listeningRepository.findAll();
+    }
 }

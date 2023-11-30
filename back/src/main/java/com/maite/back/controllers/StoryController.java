@@ -39,9 +39,8 @@ public class StoryController {
         return this.storyService.getAll();
     }
 
-    @PostMapping("/get")
-    public StoryModel getByTitle(@RequestHeader("Authorization") String token, @RequestBody StoryModel story){
-        this.authService.validateToken(token.replace("Bearer ", ""));
+    @PostMapping("/search")
+    public StoryModel getByTitle(@RequestBody StoryModel story){
         return storyService.getByName(story);
     }
 }

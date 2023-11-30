@@ -18,12 +18,11 @@ export function Register(props) {
             email,
             age,
             proficience: "Beginner",
-            password
+            password,
+            adm: false
         }
 
         const res = await axios.post("http://localhost:8080/user", user);
-
-        console.log(res)
         props.navigation.navigate("Login");
 
     }

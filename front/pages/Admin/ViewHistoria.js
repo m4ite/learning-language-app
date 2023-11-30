@@ -27,9 +27,7 @@ export function ViewHistoria(props) {
             <TouchableOpacity onPress={() => props.navigation.navigate('HomeADM')} style={{ padding: 10 }}>
                 <Icon source="chevron-left" size={20} />
             </TouchableOpacity>
-
             <Image source={require("../../assets/initial.png")} style={style.mainImg} />
-
             <Text style={style.title}>Histórias Criadas</Text>
             <TouchableOpacity style={style.button} onPress={() => props.navigation.navigate("CreateHistoria")}>
                 <Text style={style.create}>
@@ -53,8 +51,6 @@ export function ViewHistoria(props) {
                             </View>
                         </TouchableOpacity>
                     )} />
-
-
             </ScrollView>
         </View>
     )
@@ -123,5 +119,5 @@ const style = StyleSheet.create({
     bg: {
         height: "100%",
         backgroundColor: "white"
-    },
+    }
 })

@@ -1,6 +1,7 @@
 package com.maite.back.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -37,5 +38,11 @@ public class ListeningController {
     public List<ListeningModel> getByLevel(@RequestHeader("Authorization") String token, @RequestBody ListeningModel level) {
         this.authService.validateToken(token.replace("Bearer ", ""));
         return listeningService.getByLevel(level.nome);
+    }
+
+    @GetMapping("")
+    public List<ListeningModel> getAll(@RequestHeader("Authorization") String token){
+        this.authService.validateToken(token.replace("Bearer ", ""));
+        return this.listeningService.getAll();
     }
 }

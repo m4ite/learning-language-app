@@ -22,4 +22,7 @@ public class OptionService {
         return this.optionRepository.findByLevel(level);
     }
 
+    public List<OptionModel> getAll(){
+        return this.optionRepository.findAll();
+    }
 }

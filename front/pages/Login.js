@@ -12,46 +12,49 @@ export function Login(props) {
         const user = { email, password }
         var res = await axios.post("http://localhost:8080/auth/login", user)
         sessionStorage.setItem('token', res.data)
-        // const res = await axios.post("http://localhost:8080/auth/login", {headers: {"Authorization":"Bearer "+jwt}})
-        props.navigation.navigate("Home")
+
+        const find = { "email": email }
+        var isAdmin = await axios.post("http://localhost:8080/user/isAdm", find)
+        if (isAdmin.data)
+            props.navigation.navigate("HomeADM")
+        else
+            props.navigation.navigate("Home")
     }
 
     return (
-        <>
-            <View style={style.body}>
-                <Image source={require("../assets/initial.png")} style={style.img}/>
-                <View style={style.contentView}>
-                    <Text style={style.content}><Text style={{ fontWeight: "bold" }}>Login</Text> to your account</Text>
-                </View>
-
-                <TextInput
-                    label="Email"
-                    left={<TextInput.Icon icon="email" />}
-                    style={style.input}
-                    activeUnderlineColor="green"
-                    underlineColor="#EF5454"
-                    keyboardType="email-address"
-                    onChangeText={(text) => setEmail(text)} />
-
-                <TextInput
-                    label="Password"
-                    style={style.input}
-                    activeUnderlineColor="green"
-                    underlineColor="#EF5454"
-                    left={<TextInput.Icon icon="form-textbox-password" />}
-                    secureTextEntry
-                    onChangeText={(text) => setPassword(text)} />
-
-                <TouchableOpacity onPress={() => login()} style={style.login}>
-                    <Text style={style.loginText}>Login</Text>
-                </TouchableOpacity>
-                <TouchableOpacity  onPress={() => props.navigation.navigate("Register")}>
-                    <Text style={style.content2}>Don't have an Account? &nbsp;
-                        <Text style={{color: "#EF5454", fontWeight: "500"}}>Sign up</Text>
-                    </Text>
-                </TouchableOpacity>
+        <View style={style.body}>
+            <Image source={require("../assets/initial.png")} style={style.img} />
+            <View style={style.contentView}>
+                <Text style={style.content}><Text style={{ fontWeight: "bold" }}>Login</Text> to your account</Text>
             </View>
-        </>
+
+            <TextInput
+                label="Email"
+                left={<TextInput.Icon icon="email" />}
+                style={style.input}
+                activeUnderlineColor="green"
+                underlineColor="#EF5454"
+                keyboardType="email-address"
+                onChangeText={(text) => setEmail(text)} />
+
+            <TextInput
+                label="Password"
+                style={style.input}
+                activeUnderlineColor="green"
+                underlineColor="#EF5454"
+                left={<TextInput.Icon icon="form-textbox-password" />}
+                secureTextEntry
+                onChangeText={(text) => setPassword(text)} />
+
+            <TouchableOpacity onPress={() => login()} style={style.login}>
+                <Text style={style.loginText}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => props.navigation.navigate("Register")}>
+                <Text style={style.content2}>Don't have an Account? &nbsp;
+                    <Text style={{ color: "#EF5454", fontWeight: "500" }}>Sign up</Text>
+                </Text>
+            </TouchableOpacity>
+        </View>
     )
 }
 

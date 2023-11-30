@@ -22,4 +22,8 @@ public class WriteService {
     public List<WriteModel> getByLevel(String level){
         return this.writeRepository.findByLevel(level);
     }
+
+    public List<WriteModel> getAll( ){
+        return this.writeRepository.findAll();
+    }
 }

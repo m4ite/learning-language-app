@@ -12,7 +12,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserModel save(UserModel userModel){
+    public UserModel save(UserModel userModel) {
         return this.userRepository.save(userModel);
     }
 

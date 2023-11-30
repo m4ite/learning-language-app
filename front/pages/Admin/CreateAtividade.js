@@ -24,7 +24,6 @@ export function CreateAtividades(props) {
 
     return (
         <View style={style.bg}>
-
             <TouchableOpacity onPress={() => props.navigation.navigate("ViewNiveis")}>
                 <Icon source="chevron-left" size={20} />
             </TouchableOpacity>
@@ -63,12 +62,6 @@ const style = StyleSheet.create({
     bg: {
         backgroundColor: "white",
         height: "100%"
-    },
-    input: {
-        backgroundColor: "#F9F9F9",
-        margin: 10,
-        borderColor: "gray",
-        marginHorizontal: 50,
     },
     name: {
         textAlign: "center",

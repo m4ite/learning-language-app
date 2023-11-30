@@ -7,12 +7,10 @@ export function CreateNivel(props) {
     const [title, setTitle] = useState("")
 
     async function create() {
-        const nivel = {
-            name: title
-        }
+        const nivel = { name: title }
         const jwt = sessionStorage.getItem('token')
-        const res = await axios.post("http://localhost:8080/level", nivel,{headers: {"Authorization":"Bearer " + jwt}})
-        if(res.data)
+        const res = await axios.post("http://localhost:8080/level", nivel, { headers: { "Authorization": "Bearer " + jwt } })
+        if (res.data)
             props.navigation.navigate("ViewNiveis")
     }
 
@@ -23,7 +21,6 @@ export function CreateNivel(props) {
             </TouchableOpacity>
 
             <Image source={require("../../assets/nivelCreate.png")} style={style.img} />
-
             <Text style={style.title}>Crie um nível</Text>
 
             <TextInput
@@ -37,7 +34,6 @@ export function CreateNivel(props) {
             <TouchableOpacity style={style.button} onPress={() => create()}>
                 <Text style={style.buttonText}>Criar</Text>
             </TouchableOpacity>
-
         </View>
     )
 }

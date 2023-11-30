@@ -14,6 +14,7 @@ import { HistoriaDetail } from "./pages/User/HistoriaDetail";
 import { Historias } from "./pages/User/Historias";
 import { MyAccount } from "./pages/User/MyAccount";
 import { Activity } from "./pages/User/Activity";
+import { ActivityPreview } from "./pages/User/ActivityPreview";
 
 
 //  ADMIN PAGES
@@ -40,11 +41,11 @@ export default function App() {
       <storyContext.Provider value={{ story, setStory }}>
         <NavigationContainer>
           <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
             <Stack.Screen options={{ headerShown: false }} name="CreateAtividade" component={CreateAtividades} />
             <Stack.Screen options={{ headerShown: false }} name="HomeADM" component={HomeADM} />
             <Stack.Screen options={{ headerShown: false }} name="Atividade" component={Activity} />
             <Stack.Screen options={{ headerShown: false }} name="CreateNivel" component={CreateNivel} />
-            <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
             <Stack.Screen options={{ headerShown: false }} name="ViewNiveis" component={ViewNiveis} />
             <Stack.Screen options={{ headerShown: false }} name="CreateHistoria" component={CreateHistorias} />
             <Stack.Screen options={{ headerShown: false }} name="Load" component={Load} />
@@ -56,6 +57,8 @@ export default function App() {
             <Stack.Screen options={{ headerShown: false }} name="Historias" component={Historias} />
             <Stack.Screen options={{ headerShown: false }} name="Account" component={MyAccount} />
             <Stack.Screen options={{ headerShown: false }} name="Nav" component={NavBar} />
+            <Stack.Screen options={{ headerShown: false }} name="ActivityPreview" component={ActivityPreview} />
+
           </Stack.Navigator>
         </NavigationContainer>
       </storyContext.Provider>

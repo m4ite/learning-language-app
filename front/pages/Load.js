@@ -13,14 +13,12 @@ export function Load(props) {
     }, []);
 
     return (
-        <>
-            <View style={style.bg}>
-                <View style={style.glass}>
+        <View style={style.bg}>
+            <View style={style.glass}>
                 <Image source={require("../assets/logo.png")} style={{ width: 400, height: 400 }} />
                 {finishedTimeout && props.navigation.navigate("Start")}
-                </View>
             </View>
-        </>
+        </View>
     )
 }
 

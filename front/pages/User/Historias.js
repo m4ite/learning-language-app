@@ -7,12 +7,9 @@ export function Historias(props) {
     const jwt = sessionStorage.getItem("token")
     const header = { headers: { "Authorization": " Bearer " + jwt } }
 
-    async function get(){
+    async function get() {
         await axios.get("http://localhost:8080/story", header)
-        .then((response) => {
-            setHistorias(response.data)
-            console.log(response.data)
-        })
+            .then((response) => { setHistorias(response.data) })
     }
 
     useEffect(() => {
@@ -30,8 +27,8 @@ export function Historias(props) {
             <ScrollView>
                 <Text style={style.h2}><Text style={style.span}>Série 1</Text></Text>
                 <View style={style.grid}>
-                {historias.map((item) => 
-                        <HistoriaEscolher key={item.id} title={item.title} xp={item.xp} image="rainyDay.png"/>)}
+                    {historias.map((item) =>
+                        <HistoriaEscolher key={item.id} title={item.title} xp={item.xp} image="rainyDay.png" />)}
                 </View>
             </ScrollView>
         </>
@@ -70,10 +67,10 @@ const style = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap"
     },
-    button:{
+    button: {
         marginHorizontal: "10px"
     },
-    img:{
+    img: {
         width: "120px",
         height: "108px",
         alignSelf: "center",
