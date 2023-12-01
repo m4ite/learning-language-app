@@ -10,4 +10,7 @@ import com.maite.back.models.OptionModel;;
 public interface OptionRepository extends MongoRepository<OptionModel, String> {
     @Query("{'nivel': ?0}")
     List<OptionModel> findByLevel(String nivel);
+
+    @Query("{'nome': ?0}")
+    OptionModel findByName(String nome);
 }

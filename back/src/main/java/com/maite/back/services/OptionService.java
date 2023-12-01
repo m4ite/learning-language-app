@@ -22,6 +22,10 @@ public class OptionService {
         return this.optionRepository.findByLevel(level);
     }
 
+    public OptionModel getByName(String name){
+        return this.optionRepository.findByName(name);
+    }
+
     public List<OptionModel> getAll(){
         return this.optionRepository.findAll();
     }

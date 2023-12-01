@@ -22,6 +22,10 @@ public class ListeningService {
         return this.listeningRepository.findByLevel(level);
     }
 
+    public ListeningModel getByName(String name){
+        return this.listeningRepository.findByName(name);
+    }
+
     public List<ListeningModel> getAll()
     {
         return this.listeningRepository.findAll();

@@ -51,15 +51,15 @@ export function Lessons(props) {
                 <View key={item.id}>
                     <Text style={style.h2}><Text style={style.span}>{item.name}</Text></Text>
                     {listening.filter(e => e.nivel === item.name).map((item2) =>
-                        <ActivityPreview nome={item2.nome} type={item2.tipo}/>
+                        <ActivityPreview name={item2.nome} type={item2.tipo} key={item2.id}/>
                     )}
 
                     {write.filter(e => e.nivel === item.name).map((item2) =>
-                       <ActivityPreview nome={item2.nome} type={item2.tipo}/>
+                       <ActivityPreview name={item2.nome} type={item2.tipo} key={item2.id}/>
                     )}
 
                     {option.filter(e => e.nivel === item.name).map((item2) =>
-                        <ActivityPreview nome={item2.nome} type={item2.tipo}/>
+                        <ActivityPreview name={item2.nome} type={item2.tipo} key={item2.id}/>
                     )}
 
                 </View>

@@ -45,4 +45,11 @@ public class ListeningController {
         this.authService.validateToken(token.replace("Bearer ", ""));
         return this.listeningService.getAll();
     }
+
+    @PostMapping("/getByName")
+    public ListeningModel getByName(@RequestHeader("Authorization") String token, @RequestBody ListeningModel level){
+        this.authService.validateToken(token.replace("Bearer ", ""));
+        return this.listeningService.getByName(level.nome);
+    }
+    
 }

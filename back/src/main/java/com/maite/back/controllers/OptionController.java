@@ -1,7 +1,6 @@
 package com.maite.back.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.event.PublicInvocationEvent;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,5 +43,11 @@ public class OptionController {
     public List<OptionModel> getAll(@RequestHeader ("Authorization") String token){
         this.authService.validateToken(token.replace("Bearer ", ""));
         return optionService.getAll();
+    }
+
+    @GetMapping("getByName")
+    public OptionModel getByName(@RequestHeader ("Authorization") String token, @RequestBody OptionModel name){
+        this.authService.validateToken(token.replace("Bearer ", ""));
+        return optionService.getByName(name.nome);
     }
 }
